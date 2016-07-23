@@ -5,6 +5,10 @@ android {
     compileSdkVersion 23
     buildToolsVersion "24.0.0 rc2"
 
+    repositories {
+        mavenCentral()
+    }
+
     defaultConfig {
         applicationId "com.miniandroid.myzzung.supoint"
         minSdkVersion 15
@@ -34,4 +38,5 @@ dependencies {
     compile 'com.android.support:recyclerview-v7:23.3.0'
     compile 'com.android.support:cardview-v7:23.0.+'
     compile 'com.github.clans:fab:1.6.4'
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
 }
