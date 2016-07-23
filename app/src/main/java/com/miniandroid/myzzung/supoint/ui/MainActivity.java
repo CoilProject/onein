@@ -1,5 +1,6 @@
 package com.miniandroid.myzzung.supoint.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -113,7 +114,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_notification) {
+            Intent notificationIntent = new Intent(MainActivity.this,NotificationActivity.class);
+            startActivity(notificationIntent);
             return true;
         }
 
