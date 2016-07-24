@@ -9,7 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by myZZUNG on 2016. 5. 11..
+ * Created by myZZUNG
  */
 public class CoilRequestBuilder {
 
@@ -17,6 +17,7 @@ public class CoilRequestBuilder {
 
     private final String ATTR_KEY_DEBUG_MODE = "debug_mode";
     private final String ATTR_KEY_BUILD_VERSION = "build_version";
+    private final String ATTR_KEY_SOURCE = "source";
 
     private JSONObject mRequestBody;
     private CoilApplication app;
@@ -28,6 +29,7 @@ public class CoilRequestBuilder {
         try {
             mRequestBody.put(ATTR_KEY_DEBUG_MODE, app.debug_mode);
             mRequestBody.put(ATTR_KEY_BUILD_VERSION, app.version_code);
+            mRequestBody.put(ATTR_KEY_SOURCE, app.device_source);
         } catch (JSONException e) {
             e.printStackTrace();
         }

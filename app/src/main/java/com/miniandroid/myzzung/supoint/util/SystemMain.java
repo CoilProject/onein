@@ -1,7 +1,7 @@
 package com.miniandroid.myzzung.supoint.util;
 
 /**
- * Created by myZZUNG on 2016. 5. 12..
+ * Created by myZZUNG
  */
 public class SystemMain {
 

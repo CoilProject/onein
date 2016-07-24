@@ -25,7 +25,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by ppang on 16. 5. 22..
+ *
  */
 public class UserReportActivity extends AppCompatActivity {
 

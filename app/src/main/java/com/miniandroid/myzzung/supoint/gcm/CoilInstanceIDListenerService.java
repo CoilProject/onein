@@ -5,7 +5,7 @@ import android.content.Intent;
 import com.google.android.gms.iid.InstanceIDListenerService;
 
 /**
- * Created by myZZUNG on 2016. 5. 6..
+ * Created by myZZUNG
  */
 public class CoilInstanceIDListenerService extends InstanceIDListenerService {
 

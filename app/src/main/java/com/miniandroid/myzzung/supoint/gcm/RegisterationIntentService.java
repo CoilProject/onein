@@ -13,7 +13,7 @@ import com.miniandroid.myzzung.supoint.R;
 import java.io.IOException;
 
 /**
- * Created by myZZUNG on 2016. 5. 6..
+ * Created by myZZUNG
  */
 public class RegisterationIntentService extends IntentService {
 

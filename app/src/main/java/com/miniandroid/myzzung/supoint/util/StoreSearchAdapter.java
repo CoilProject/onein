@@ -30,7 +30,7 @@ import org.json.JSONObject;
 import java.util.List;
 
 /**
- * Created by myZZUNG on 2016. 5. 14..
+ * Created by myZZUNG
  */
 public class StoreSearchAdapter extends RecyclerView.Adapter<StoreSearchAdapter.ViewHolder> {
 

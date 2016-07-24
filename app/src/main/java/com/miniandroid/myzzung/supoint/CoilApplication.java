@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by myZZUNG on 2016. 4. 18..
+ *
  */
 public class CoilApplication extends Application {
 
@@ -21,6 +21,7 @@ public class CoilApplication extends Application {
 
     public int version_code;
     public boolean debug_mode;
+    public String device_source;
 
     public StoreAll storeAll;
     public Ranking myRankings;
@@ -45,6 +46,10 @@ public class CoilApplication extends Application {
 
         // version_code
         version_code = -1;
+
+        // device source
+        this.device_source = "mobile";
+
         try {
             PackageInfo packageInfo = getApplicationContext().getPackageManager().getPackageInfo(getApplicationContext().getPackageName(), 0);
             version_code = packageInfo.versionCode;

@@ -6,7 +6,7 @@ import com.google.android.gms.gcm.GcmListenerService;
 import com.miniandroid.myzzung.supoint.util.CoilNotification;
 
 /**
- * Created by myZZUNG on 2016. 5. 6..
+ * Created by myZZUNG
  */
 public class CoilGcmListenerService extends GcmListenerService {
 

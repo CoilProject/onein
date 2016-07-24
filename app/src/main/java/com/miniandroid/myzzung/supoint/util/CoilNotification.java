@@ -13,7 +13,7 @@ import com.miniandroid.myzzung.supoint.R;
 import com.miniandroid.myzzung.supoint.ui.MainActivity;
 
 /**
- * Created by myZZUNG on 2016. 5. 6..
+ * Created by myZZUNG
  */
 public class CoilNotification {
     private final String TAG = "CoilNotification";

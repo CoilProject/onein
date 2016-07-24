@@ -21,7 +21,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by myZZUNG on 2016. 5. 19..
+ * Created by myZZUNG
  * 쿠폰 작업중 통신파트를 모아서 관리합니다
  */
 public class CouponWork {

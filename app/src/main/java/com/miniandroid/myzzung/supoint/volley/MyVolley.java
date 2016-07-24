@@ -9,7 +9,7 @@ import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.Volley;
 
 /**
- * Created by myZZUNG on 2016. 4. 23..
+ * Created by myZZUNG
  */
 public class MyVolley {
     private static MyVolley one;

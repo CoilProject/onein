@@ -30,7 +30,7 @@ import com.miniandroid.myzzung.supoint.ui.PresentActivity;
 import java.util.List;
 
 /**
- * Created by myZZUNG on 2016. 5. 17..
+ * Created by myZZUNG
  */
 public class MyCouponAdapter extends RecyclerView.Adapter<MyCouponAdapter.ViewHolder> {
 

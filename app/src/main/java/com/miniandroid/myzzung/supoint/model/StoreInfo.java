@@ -6,7 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by myZZUNG on 2016. 5. 13..
+ * Created by myZZUNG
  */
 public class StoreInfo {
     private int couponId;
