@@ -1,5 +1,6 @@
 package com.miniandroid.myzzung.supoint.model;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
@@ -30,6 +31,13 @@ public class UserInfo extends Info {
     }
 
     public UserInfo(JSONObject obj){
+        try {
+            userId = obj.getString("friend_id");
+            userName = obj.getString("friend_name");
+            point = obj.getInt("point");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 
