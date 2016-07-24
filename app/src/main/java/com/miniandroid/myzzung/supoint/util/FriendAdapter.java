@@ -1,7 +1,9 @@
 package com.miniandroid.myzzung.supoint.util;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,8 +11,20 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.miniandroid.myzzung.supoint.CoilApplication;
 import com.miniandroid.myzzung.supoint.R;
+import com.miniandroid.myzzung.supoint.gcm.CoilGcmListenerService;
 import com.miniandroid.myzzung.supoint.model.UserInfo;
+import com.miniandroid.myzzung.supoint.ui.MainActivity;
+import com.miniandroid.myzzung.supoint.volley.MyVolley;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.List;
 
@@ -19,10 +33,12 @@ import java.util.List;
  */
 public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder> {
 
+    private final String TAG = "FriendAdapter";
+
     private Context context;
     private List<UserInfo> list;
     private int item_layout;
-
+    private CoilApplication app;
     public FriendAdapter(){
 
     }
@@ -31,6 +47,7 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
         this.context = context;
         this.list = items;
         this.item_layout = item_layout;
+        //app = (CoilApplication) context;
     }
 
     @Override
@@ -52,8 +69,44 @@ public class FriendAdapter extends RecyclerView.Adapter<FriendAdapter.ViewHolder
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, item.show(), Toast.LENGTH_SHORT).show();
+                final RequestQueue queue = MyVolley.getInstance(context).getRequestQueue();
+
+                CoilRequestBuilder builder = new CoilRequestBuilder(context);
+                builder.setCustomAttribute("friend_id", item.getUserId());
+                Log.d(TAG, "before network : "+builder.build().toString());
+                JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.POST,
+                        SystemMain.URL.URL_PUSH_TEST,
+                        builder.build(),
+                        networkSuccessListener(),
+                        networkErrorListener());
+
+                queue.add(myReq);
             }
         });
+    }
+
+    private Response.Listener<JSONObject> networkSuccessListener() {
+        return new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d(TAG, response.toString());
+
+
+                Toast.makeText(context, "친구에게 푸시를 보냅니다", Toast.LENGTH_SHORT).show();
+
+
+                //Intent intent  = new Intent(getApplicationContext(), MainActivity.class);
+
+            }
+        };
+    }
+    private Response.ErrorListener networkErrorListener() {
+        return new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(context, R.string.volley_network_fail, Toast.LENGTH_SHORT).show();
+            }
+        };
     }
 
     @Override

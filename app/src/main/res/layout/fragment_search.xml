@@ -10,13 +10,13 @@
         android:layout_height="wrap_content">
 
         <EditText
-            android:id="@+id/edit_home_search"
+            android:id="@+id/edit_friend_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="검색할 친구의 ID 를 입력하세요"/>
 
         <Button
-            android:id="@+id/btn_home_search"
+            android:id="@+id/btn_friend_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="검색"

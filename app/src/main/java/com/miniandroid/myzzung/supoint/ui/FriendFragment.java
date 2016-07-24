@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -44,6 +46,9 @@ public class FriendFragment extends Fragment {
     List<UserInfo> items;
     FriendAdapter adapter;
 
+    private EditText edit_friend_search;
+    private Button btn_friend_search;
+
 
     public FriendFragment() {
         // Required empty public constructor
@@ -65,7 +70,6 @@ public class FriendFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         final RequestQueue queue = MyVolley.getInstance(getActivity()).getRequestQueue();
-
         CoilRequestBuilder builder = new CoilRequestBuilder(getActivity());
         builder.setCustomAttribute("user_id", app.user_id);
         Log.d(TAG, "before network : "+builder.build().toString());
@@ -78,6 +82,27 @@ public class FriendFragment extends Fragment {
         queue.add(myReq);
 
         items =  new ArrayList<>();
+
+        edit_friend_search = (EditText)rootView.findViewById(R.id.edit_friend_search);
+        btn_friend_search = (Button)rootView.findViewById(R.id.btn_friend_search);
+        btn_friend_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CoilRequestBuilder builder = new CoilRequestBuilder(getActivity());
+                builder.setCustomAttribute("user_id", app.user_id)
+                        .setCustomAttribute("friend_id", edit_friend_search.getText().toString());
+                Log.d(TAG, "before network : "+builder.build().toString());
+                JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.POST,
+                        SystemMain.URL.URL_FRIEND_ADD,
+                        builder.build(),
+                        networkSuccessListener_addfriend(),
+                        networkErrorListener());
+
+                queue.add(myReq);
+            }
+        });
+
+
 
 //        UserInfo item;
 //        for(int i=0;i<10;i++){
@@ -109,6 +134,26 @@ public class FriendFragment extends Fragment {
 
                     }else{
 
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                //Intent intent  = new Intent(getApplicationContext(), MainActivity.class);
+
+            }
+        };
+    }
+    private Response.Listener<JSONObject> networkSuccessListener_addfriend() {
+        return new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Log.d(TAG, response.toString());
+                try {
+                    if(response.getBoolean("add_friend")){
+                        Toast.makeText(getActivity(), response.getString("message"), Toast.LENGTH_SHORT).show();
+
+                    }else{
+                        Toast.makeText(getActivity(), response.getString("message"), Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

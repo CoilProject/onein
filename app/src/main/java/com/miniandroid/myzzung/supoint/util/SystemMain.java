@@ -15,6 +15,8 @@ public class SystemMain {
         public static final String URL_LOGIN = ROOT_URL+"login";
         public static final String URL_JOIN = ROOT_URL+"add_user";
         public static final String URL_FRIEND_FIND = ROOT_URL+"find_friends";
+        public static final String URL_FRIEND_ADD = ROOT_URL+"add_friend";
+        public static final String URL_PUSH_TEST = "http://52.78.81.136/test/gcm_test";
         public static final String URL_SEARCH_STORE_ALL = ROOT_URL+"search/search_store_all.php";
         public static final String URL_COUPON_ENROLL = ROOT_URL+"client/coupon_enroll.php";
         public static final String URL_COUPON_SHOW = ROOT_URL+"client/coupon_show.php";
