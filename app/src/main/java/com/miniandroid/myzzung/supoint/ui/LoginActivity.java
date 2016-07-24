@@ -17,8 +17,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -34,11 +38,16 @@ import com.miniandroid.myzzung.supoint.CoilApplication;
 import com.miniandroid.myzzung.supoint.R;
 import com.miniandroid.myzzung.supoint.gcm.QuickstartPreferences;
 import com.miniandroid.myzzung.supoint.gcm.RegisterationIntentService;
+import com.miniandroid.myzzung.supoint.util.CoilRequestBuilder;
+import com.miniandroid.myzzung.supoint.util.SystemMain;
+import com.miniandroid.myzzung.supoint.volley.MyVolley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LoginActivity extends BaseActivity {
 
@@ -187,28 +196,28 @@ public class LoginActivity extends BaseActivity {
 //            showProgress(true);
 //            mAuthTask = new UserLoginTask(email, password);
 //            mAuthTask.execute((Void) null);
-
-//            final RequestQueue queue = MyVolley.getInstance(getApplicationContext()).getRequestQueue();
-//
-//                CoilRequestBuilder builder = new CoilRequestBuilder(getApplicationContext());
-//                builder.setCustomAttribute("user_id", email)
-//                        .setCustomAttribute("user_pw", password)
-//                        .setCustomAttribute("gcm_token", gcm_token);
-//                Log.d(TAG, "before network : "+builder.build().toString());
-//            JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.POST,
-//                    SystemMain.URL.URL_LOGIN,
-//                    builder.build(),
-//                    networkSuccessListener(),
-//                    networkErrorListener());
-//
-//            queue.add(myReq);
             //showProgressDialog("로그인", "로그인 중입니다");
-            Toast.makeText(LoginActivity.this, "로그인 되었다", Toast.LENGTH_SHORT).show();
-            app.user_id = email;
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
+
+            final RequestQueue queue = MyVolley.getInstance(getApplicationContext()).getRequestQueue();
+
+                CoilRequestBuilder builder = new CoilRequestBuilder(getApplicationContext());
+                builder.setCustomAttribute("user_id", email)
+                        .setCustomAttribute("user_pw", password)
+                        .setCustomAttribute("gcm_token", gcm_token);
+                Log.d(TAG, "before network : "+builder.build().toString());
+            JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.POST,
+                    SystemMain.URL.URL_LOGIN,
+                    builder.build(),
+                    networkSuccessListener(),
+                    networkErrorListener());
+
+            queue.add(myReq);
+//            Toast.makeText(LoginActivity.this, "로그인 되었다", Toast.LENGTH_SHORT).show();
+//            app.user_id = email;
+//            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//            startActivity(intent);
             //dismissDialog();
-            finish();
+           // finish();
 
 
         }
@@ -239,10 +248,12 @@ public class LoginActivity extends BaseActivity {
                         Toast.makeText(LoginActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
                         app.user_id = email;
                         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        dismissDialog();
                         startActivity(intent);
                         finish();
+
                     }else{
-                        Toast.makeText(LoginActivity.this, response.getString("error_message"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

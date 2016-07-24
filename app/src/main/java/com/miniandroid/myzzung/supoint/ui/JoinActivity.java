@@ -98,7 +98,11 @@ public class JoinActivity extends BaseActivity {
 
                 CoilRequestBuilder builder = new CoilRequestBuilder(getApplicationContext());
                 builder.setCustomAttribute("user_id", email)
-                        .setCustomAttribute("user_pw", password);
+                        .setCustomAttribute("user_pw", password)
+                        .setCustomAttribute("permission", "normal")
+                        .setCustomAttribute("point", 0)
+                        .setCustomAttribute("user_name","사용자");
+                Log.d(TAG,builder.build().toString());
                 JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.POST,
                         SystemMain.URL.URL_JOIN,
                         builder.build(),
@@ -134,7 +138,7 @@ public class JoinActivity extends BaseActivity {
                         Toast.makeText(JoinActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
                         finish();
                     }else{
-                        Toast.makeText(JoinActivity.this, response.getString("error_message"), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(JoinActivity.this, response.getString("message"), Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

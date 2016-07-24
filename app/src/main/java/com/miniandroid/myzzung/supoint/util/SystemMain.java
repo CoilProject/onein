@@ -11,9 +11,9 @@ public class SystemMain {
     }
 
     public class URL{
-        public static final String ROOT_URL= "http://ljs93kr2.cafe24.com/coil/backend/";
-        public static final String URL_LOGIN = ROOT_URL+"login/do_login.php";
-        public static final String URL_JOIN = ROOT_URL+"login/do_join.php";
+        public static final String ROOT_URL= "http://52.78.81.136/su_point/"; // AWS URL
+        public static final String URL_LOGIN = ROOT_URL+"login";
+        public static final String URL_JOIN = ROOT_URL+"add_user";
         public static final String URL_SEARCH_STORE_ALL = ROOT_URL+"search/search_store_all.php";
         public static final String URL_COUPON_ENROLL = ROOT_URL+"client/coupon_enroll.php";
         public static final String URL_COUPON_SHOW = ROOT_URL+"client/coupon_show.php";
