@@ -147,20 +147,23 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_friend) {
             fragment = new FriendFragment();
             title = getString(R.string.nav_friend);
-            if(app.storeAll.isDoStoreListAll()){
-
-                    CoilRequestBuilder builder = new CoilRequestBuilder(getApplicationContext());
-                    builder.setCustomAttribute("user_id", app.user_id);
-                    Log.d(TAG, "before network : "+builder.build().toString());
-                    JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.POST,
-                            SystemMain.URL.URL_SEARCH_STORE_ALL,
-                            builder.build(),
-                            networkSearchStoreSuccessListener(),
-                            networkErrorListener());
-
-                    queue.add(myReq);
-
-            }
+            // TODO : 화면을 전환 전에 해야할 작업이 있다면 여기서 작업하면 됩니다
+            // TODO : 모든 Fragment 는 BaseFragment 를 상속하고 있고
+            // TODO : 네트워크 작업중에는 BaseFragment 의 Progress Dialog를 호출하면 됩니다
+//            if(app.storeAll.isDoStoreListAll()){
+//
+//                    CoilRequestBuilder builder = new CoilRequestBuilder(getApplicationContext());
+//                    builder.setCustomAttribute("user_id", app.user_id);
+//                    Log.d(TAG, "before network : "+builder.build().toString());
+//                    JsonObjectRequest myReq = new JsonObjectRequest(Request.Method.POST,
+//                            SystemMain.URL.URL_SEARCH_STORE_ALL,
+//                            builder.build(),
+//                            networkSearchStoreSuccessListener(),
+//                            networkErrorListener());
+//
+//                    queue.add(myReq);
+//
+//            }
 
         } else if (id == R.id.nav_settings) {
             fragment = new SettingFragment();
